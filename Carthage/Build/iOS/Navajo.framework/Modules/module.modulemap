@@ -1,0 +1,10 @@
+framework module Navajo {
+  umbrella header "Navajo.h"
+
+  export *
+  module * { export * }
+}
+
+module Navajo.Swift {
+    header "Navajo-Swift.h"
+}

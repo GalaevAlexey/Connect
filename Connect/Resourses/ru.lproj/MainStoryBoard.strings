@@ -1,0 +1,74 @@
+/* Class = "UILabel"; text = "ONE TIME PASSWORD"; ObjectID = "3TF-JK-PSG"; */
+"3TF-JK-PSG.text" = "Одноразовый пароль";
+
+/* Class = "UITextField"; text = "Enter token manualy"; ObjectID = "4Z1-qn-AN7"; */
+"4Z1-qn-AN7.text" = "Введите token вручную";
+
+/* Class = "UILabel"; text = "MAC-TOKEN"; ObjectID = "EZP-Nd-gbJ"; */
+"EZP-Nd-gbJ.text" = "MAC-TOKEN";
+
+/* Class = "UILabel"; text = "Details data"; ObjectID = "FNm-k7-JOG"; */
+"FNm-k7-JOG.text" = "Детали";
+
+/* Class = "UITextField"; text = "Enter password"; ObjectID = "HM5-YB-hNT"; */
+"HM5-YB-hNT.text" = "Введите пароль";
+
+/* Class = "UILabel"; text = "GET OTP"; ObjectID = "Ivg-lE-Vk9"; */
+"Ivg-lE-Vk9.text" = "Получить OTP";
+
+/* Class = "UITextField"; text = "Enter password"; ObjectID = "KI7-U0-Rd5"; */
+"KI7-U0-Rd5.text" = "Введите пароль";
+
+/* Class = "UIButton"; normalTitle = "ENTER"; ObjectID = "QBW-Rx-akh"; */
+"QBW-Rx-akh.normalTitle" = "Вход";
+
+/* Class = "UILabel"; text = "Token"; ObjectID = "ZCy-c0-MOu"; */
+"ZCy-c0-MOu.text" = "Token";
+
+/* Class = "UIButton"; normalTitle = "CHANGE MAC"; ObjectID = "cyo-d2-UfT"; */
+"cyo-d2-UfT.normalTitle" = "Изменить MAC";
+
+/* Class = "UITextField"; text = "Repeat password"; ObjectID = "f6o-Lc-vB1"; */
+"f6o-Lc-vB1.text" = "Повторите пароль";
+
+/* Class = "UILabel"; text = "Hide password"; ObjectID = "gIc-dW-esO"; */
+"gIc-dW-esO.text" = "Скрыть пароль";
+
+/* Class = "UILabel"; text = "SCAN QR"; ObjectID = "gQZ-3w-fwe"; */
+"gQZ-3w-fwe.text" = "Сканировать QR";
+
+/* Class = "UILabel"; text = "GET МАС"; ObjectID = "i8J-4L-lxF"; */
+"i8J-4L-lxF.text" = "Получить МАС";
+
+/* Class = "UIButton"; normalTitle = "ENTER"; ObjectID = "i8m-zC-FUP"; */
+"i8m-zC-FUP.normalTitle" = "Вход";
+
+/* Class = "UILabel"; text = "Token"; ObjectID = "lzg-dl-61V"; */
+"lzg-dl-61V.text" = "Token";
+
+/* Class = "UILabel"; text = "SET OTP"; ObjectID = "nBz-0o-yzh"; */
+"nBz-0o-yzh.text" = "Установить OTP";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "pyp-XT-Ip5"; */
+"pyp-XT-Ip5.normalTitle" = "Логин";
+
+/* Class = "UITextField"; text = "Enter old password"; ObjectID = "qtI-Ha-Jb6"; */
+"qtI-Ha-Jb6.text" = "Введите старый пароль";
+
+/* Class = "UIButton"; normalTitle = "Reset password?"; ObjectID = "r0r-Oa-csv"; */
+"r0r-Oa-csv.normalTitle" = "Сброс пароля";
+
+/* Class = "UILabel"; text = "Current time"; ObjectID = "rbi-KO-bJK"; */
+"rbi-KO-bJK.text" = "Текущее время";
+
+/* Class = "UIButton"; normalTitle = "CHANGE OTP"; ObjectID = "tv6-mJ-RH2"; */
+"tv6-mJ-RH2.normalTitle" = "Изменить OTP";
+
+/* Class = "UILabel"; text = "SET MAC"; ObjectID = "vLj-dr-QqJ"; */
+"vLj-dr-QqJ.text" = "Установить MAC";
+
+/* Class = "UILabel"; text = "MANUAL INPUT"; ObjectID = "xRJ-GL-sIB"; */
+"xRJ-GL-sIB.text" = "Ручной ввод";
+
+/* Class = "UIButton"; normalTitle = "GENERATE PASSWORD"; ObjectID = "zba-ZG-mcc"; */
+"zba-ZG-mcc.normalTitle" = "Сгенерировать пароль";

@@ -1,0 +1,12 @@
+
+
+github "Orderella/PopupDialog" ~> 0.5
+github "mattrubin/OneTimePassword" "swift-3"
+github "SVProgressHUD/SVProgressHUD" ~> 2.0
+github "ReactiveX/RxSwift" ~> 3.0
+github "jasonnam/Navajo-Swift"
+github "Flinesoft/HandySwift"
+github "krzyzanowskim/CryptoSwift"
+github "soyersoyer/SwCrypt"
+github "marketplacer/keychain-swift"
+github "norio-nomura/Base32"

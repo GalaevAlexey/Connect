@@ -1,0 +1,4 @@
+
+"Must be within range {10, 11}" = "Must be within range 10 symbols";
+
+"Пароль должен состоять из\nминимум 10 символов.\n\n В пароле должны\nприсутствовать:\n\n-латинские и/или\nкириллические символы\nверхнего и нижнего\nрегистра\n\n-десятичные цифры (от 0 до 9)\n\n -неалфавитные символы\n(например &,#,%)" = "Must be within range 10 symbols\n\nMust include decimal digit characters\n\nMust include uppercase characters\n\nMust include decimal digit characters\n\nMust include symbol characters(&,#,%)\n\n\Must include lowercase characters";

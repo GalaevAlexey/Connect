@@ -1,0 +1,45 @@
+
+
+"Must be within range {10, 11}" = "Должен содержать не меньше 10 знаков.\n";
+
+"Must include uppercase characters" = "Должен содержать буквы в верхнем регистре.\n";
+
+"Must include decimal digit characters" = "Должен содержать цифры.\n";
+
+"Must include symbol characters" = "Должен содержать специальные символы.\n";
+
+"Must include lowercase characters" = "Должен содержать буквы в нижнем регистре.\n";
+
+"Passwords dont match" = "Пароли не совпадают.";
+
+"Password rules" = "Требования к паролю";
+
+"Register" = "Регистрация";
+
+"Login" = "Вход";
+
+"ОК" = "ОK";
+
+"SCAN TOKEN" = "Сканируйте token";
+
+"Error MAC" = "Ошибка\n Установите token";
+
+"Enter old password" = "Введите старый пароль";
+
+"Connect" = "Connect";
+
+"Validation Error" = "Ошибка валидации";
+
+"Invalid password" = "Неверный пароль";
+
+"Reset password" = "Изменить пароль";
+
+"SETUP KEYS" = "УСТАНОВИТЕ КЛЮЧИ";
+
+"Invalid token" = "Неверный ключ";
+
+"MANUAL INPUT" = "Ручной ввод";
+
+"Show password" = "Показать пароль";
+
+"Hide password" = "Скрыть пароль";

@@ -1,0 +1,14 @@
+BCSymbolMap Version: 2.0
++[MF_Base32Codec dataFromBase32String:]
++[MF_Base32Codec base32StringFromData:]
+-[NSString(Base32Addition) base32String]
++[NSString(Base32Addition) stringFromBase32String:]
++[NSData(Base32Addition) dataWithBase32String:]
+-[NSData(Base32Addition) base32String]
+_dataFromBase32String:.decodingTable
+_dataFromBase32String:.paddingAdjustment
+_base32StringFromData:.encodingTable
+_base32StringFromData:.paddingTable
+Apple LLVM version 8.1.0 (clang-802.0.42)
+/IOSDEV/Connect/Carthage/Checkouts/Base32/Base32/MF_Base32Additions.m
+/IOSDEV/Connect/Carthage/Checkouts/Base32

@@ -1,0 +1,15 @@
+PODS:
+  - Base32 (1.1.2)
+  - OneTimePassword (3.0):
+    - Base32 (~> 1.1.2)
+
+DEPENDENCIES:
+  - OneTimePassword (~> 3.0)
+
+SPEC CHECKSUMS:
+  Base32: 163c298644d184e89ca4e00a996bad6bf5166390
+  OneTimePassword: 7f116451e8a4b55e385dc0191966798ca3180c9d
+
+PODFILE CHECKSUM: c52d39e28b1a2d20b3f6ea61559cb914a7b0330e
+
+COCOAPODS: 1.2.1.beta.1

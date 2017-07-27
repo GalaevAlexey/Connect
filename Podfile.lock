@@ -1,15 +1,22 @@
 PODS:
   - Base32 (1.1.2)
+  - Crashlytics (3.8.5):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.12)
   - OneTimePassword (3.0):
     - Base32 (~> 1.1.2)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - OneTimePassword (~> 3.0)
 
 SPEC CHECKSUMS:
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   OneTimePassword: 7f116451e8a4b55e385dc0191966798ca3180c9d
 
-PODFILE CHECKSUM: c52d39e28b1a2d20b3f6ea61559cb914a7b0330e
+PODFILE CHECKSUM: 29c9433579aae9d0ffc0709add09dc67520cf58b
 
 COCOAPODS: 1.2.1.beta.1

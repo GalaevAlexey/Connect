@@ -19,24 +19,26 @@ protocol SetupTokenDelegate: class {
 }
 
 class MTSetupTokenViewController: UIViewController, SetupTokenDelegate {
-    
+
     @IBOutlet weak var setupOTPButton: UIButton!
     @IBOutlet weak var setupMACButton: UIButton!
     @IBOutlet weak var getMACButton: UIButton!
     @IBOutlet weak var changeOTPButton: MTButton!
     @IBOutlet weak var changeMACButton: MTButton!
-    
+
     @IBOutlet weak var getMACview: UIView!
     @IBOutlet weak var getOTPview: UIView!
     @IBOutlet weak var setOTPview: UIView!
     @IBOutlet weak var setMACview: UIView!
+
+    private var isBusy = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Connect".localized
         // Do any additional setup after loading the view.
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configureView()
@@ -45,7 +47,7 @@ class MTSetupTokenViewController: UIViewController, SetupTokenDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is UINavigationController {
             let scannerNavVC = segue.destination as! UINavigationController
@@ -61,12 +63,12 @@ class MTSetupTokenViewController: UIViewController, SetupTokenDelegate {
             }
         }
     }
-    
+
     func configureView() {
         !UserProfiles.currentUser.OTPSecret.isEmpty ? handleOTP() : print("Need set OTP")
         !UserProfiles.currentUser.MACSecret.isEmpty ? handleMAC() : print("Need set Mac")
     }
-    
+
     func handleSecret(action:Actions) {
         switch action {
         case .OTP : handleOTP()
@@ -74,37 +76,28 @@ class MTSetupTokenViewController: UIViewController, SetupTokenDelegate {
         case .MACDETAILS : handleDetails()
         }
     }
-    
+
     func handleOTP() {
         view.sendSubview(toBack: setOTPview)
         view.bringSubview(toFront: getOTPview)
         view.bringSubview(toFront: changeOTPButton)
     }
-    
+
     func handleMAC() {
         view.sendSubview(toBack: setMACview)
         view.bringSubview(toFront: getMACview)
         view.bringSubview(toFront: changeMACButton)
     }
-    
+
     func handleDetails() {
-        var isBusy = false
-        let storedMACSecret = UserProfiles.currentUser.MACSecret
-        let storedMACDetails = UserProfiles.currentUser.datailsMAC.value
-        if(!isBusy){
-            CryptoEngine().createMac(mackey: storedMACSecret, msg: storedMACDetails) {result, message in
-                isBusy = true
-                if(result){
-                    UserProfiles.currentUser.encryptedMAC.value = message
-                    let storyb = UIStoryboard(name:"MainStoryBoard", bundle: nil)
-                    if  let  macDetailsVC = storyb.instantiateViewController(withIdentifier:"macdetailsVC") as? MTMACDetailsViewController {
-                        self.navigationController?.show(macDetailsVC, sender: nil)
-                        isBusy = !result
-                    }
-                } else {
-                    self.handleError(error: message as! Error)
-                }
+        if(CryptoEngine().createMac()){
+            let storyb = UIStoryboard(name:"MainStoryBoard", bundle: nil)
+            if  let  macDetailsVC = storyb.instantiateViewController(withIdentifier:"macdetailsVC") as? MTMACDetailsViewController {
+                self.navigationController?.show(macDetailsVC, sender: nil)
             }
+        } else {
+            let error = NSError(domain: "Error Create mac", code: -1, userInfo: nil)
+            handleError(error:error)
         }
     }
 

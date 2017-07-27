@@ -36,7 +36,8 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
     
     // MARK: View Lifecycle
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
@@ -49,7 +50,8 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
         _ = (title == VCs.manInput) ? prepareTextInput() : prepareScanner()
     }
     
-    func prepareTextInput(){
+    func prepareTextInput()
+    {
         scanner.stop()
         enterTokenTextfield.isHidden = false
         manualEntryButton.isHidden = false
@@ -63,7 +65,8 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
             }.addDisposableTo(disposeBag)
     }
     
-    func prepareScanner(){
+    func prepareScanner()
+    {
         videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         videoLayer.frame = view.layer.bounds
         view.layer.addSublayer(videoLayer)
@@ -78,27 +81,30 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool)
+    {
         super.viewWillDisappear(animated)
         scanner.stop()
     }
 
-    func cancel() {
+    func cancel()
+    {
         navigationController?.dismiss(animated: true, completion: nil)
     }
 
     // MARK: QRScannerDelegate
 
-    func handleDecodedText(text: String) {
-        
+    func handleDecodedText(text: String)
+    {
         scanner.stop()
         cancel()
-        
         guard let  url = NSURL(string: text) else {
+            
             handleTransactionInfo(info: text)
             cancel()
             return
@@ -116,7 +122,7 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
     func handleMacSecret(secret:String) {
         print(secret)
         guard let macsecret = String(secret.TokenSecret) else {
-            print("invalidSecret")
+            print("handleMacSecret")
             return
         }
         UserProfiles.currentUser.MACSecret = macsecret
@@ -127,7 +133,7 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
     func handleOTPSecret(secret:String) {
                 print(secret)
                 guard let otpsecret = String(secret.TokenSecret) else {
-                        print("invalidSecret")
+                        print("handleOTPSecret")
                         return
                 }
                 UserProfiles.currentUser.OTPSecret = otpsecret
@@ -175,6 +181,10 @@ class MTTokenScannerViewController: UIViewController, QRScannerDelegate {
         let buttonOne = DefaultButton(title: "OK") {}
         popup.addButtons([buttonOne])
         self.navigationController?.present(popup, animated: true, completion: nil)
+    }
+
+    deinit {
+        print("deinit")
     }
 }
 

@@ -45,7 +45,7 @@ func AES128Encryption()
     if UInt32(cryptStatus) == UInt32(kCCSuccess) {
         //  let x: UInt = numBytesEncrypted
         cryptData!.length = Int(numBytesEncrypted)
-        print("cryptLength = \(numBytesEncrypted), cryptData = \(cryptData)")
+        print("cryptLength = \(numBytesEncrypted), cryptData = \(String(describing: cryptData))")
         
         // Not all data is a UTF-8 string so Base64 is used
         let base64cryptString = cryptData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
@@ -92,12 +92,12 @@ func AES128Decryption(data:NSData) //data = cryptData
     if UInt32(cryptStatus) == UInt32(kCCSuccess) {
         //  let x: UInt = numBytesEncrypted
         cryptData!.length = Int(numBytesEncrypted)
-        print("DecryptcryptLength = \(numBytesEncrypted), Decrypt = \(cryptData)")
+        print("DecryptcryptLength = \(numBytesEncrypted), Decrypt = \(String(describing: cryptData))")
         
         // Not all data is a UTF-8 string so Base64 is used
         let base64cryptString = cryptData!.base64EncodedString(options:.lineLength64Characters)
         print("base64DecryptString = \(base64cryptString)")
-        print( "utf8 actual string = \(NSString(data: cryptData! as Data, encoding: String.Encoding.utf8.rawValue))");
+        print( "utf8 actual string = \(String(describing: NSString(data: cryptData! as Data, encoding: String.Encoding.utf8.rawValue)))");
     } else {
         print("Error: \(cryptStatus)")
     }

@@ -52,8 +52,9 @@ class QRScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 
     private class func createCaptureSessionWithDelegate(delegate: AVCaptureMetadataOutputObjectsDelegate) throws -> AVCaptureSession {
         let captureSession = AVCaptureSession()
-
-        guard let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo),
+        //AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        guard let captureDevice = (AVCaptureDevice.devices() as? [AVCaptureDevice])?
+            .filter({ $0.hasMediaType(AVMediaTypeVideo) && $0.position == .front}).first,
             let captureInput = try? AVCaptureDeviceInput(device: captureDevice) else {
                 throw CaptureSessionError.InputError
         }
@@ -85,9 +86,9 @@ class QRScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         for metadata in metadataObjects {
             if let metadata = metadata as? AVMetadataMachineReadableCodeObject, metadata.type == AVMetadataObjectTypeQRCode,
                 let string = metadata.stringValue {
-                // Dispatch to the main queue because setMetadataObjectsDelegate doesn't
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.delegate?.handleDecodedText(text: string)
+
                 }
             }
         }

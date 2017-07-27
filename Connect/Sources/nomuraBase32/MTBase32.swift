@@ -64,7 +64,7 @@ public func base32HexEncode(_ array: [UInt8]) -> String {
     return base32encode(array, array.count, extendedHexAlphabetEncodeTable)
 }
 
-public func base32Decode(_ string: String) -> [UInt8]? {
+public func base32Decode(_ string: String) -> Array<UInt8>? {
     return base32decode(string, alphabetDecodeTable)
 }
 
@@ -274,7 +274,7 @@ let extendedHexAlphabetDecodeTable: [UInt8] = [
 ]
 
 
-func base32decode(_ string: String, _ table: [UInt8]) -> [UInt8]? {
+func base32decode(_ string: String, _ table: [UInt8]) -> Array<UInt8>? {
     let length = string.unicodeScalars.count
     if length == 0 {
         return []
@@ -326,12 +326,16 @@ func base32decode(_ string: String, _ table: [UInt8]) -> [UInt8]? {
     
     // Use UnsafePointer<UInt8>
     return string.utf8CString.withUnsafeBufferPointer {
-        (data: UnsafeBufferPointer<CChar>) -> [UInt8] in
+        (data: UnsafeBufferPointer<CChar>) -> Array<UInt8> in
         var encoded = data.baseAddress!
-        
+
+        print("encoded \(encoded)")
+
         let result = Array<UInt8>(repeating: 0, count: dataSize)
+
         var decoded = UnsafeMutablePointer<UInt8>(mutating: result)
-        
+        print("result \(result)")
+        print("decoded \(decoded)")
         // decode regular blocks
         var value0, value1, value2, value3, value4, value5, value6, value7: UInt8
         (value0, value1, value2, value3, value4, value5, value6, value7) = (0,0,0,0,0,0,0,0)
@@ -355,7 +359,9 @@ func base32decode(_ string: String, _ table: [UInt8]) -> [UInt8]? {
             decoded = decoded.advanced(by: 5)
             encoded = encoded.advanced(by: 8)
         }
-        
+        print("values \( (value0, value1, value2, value3, value4, value5, value6, value7))")
+
+         print("result \(result)")
         // decode last block
         (value0, value1, value2, value3, value4, value5, value6, value7) = (0,0,0,0,0,0,0,0)
         switch remainEncodedLength {
@@ -363,25 +369,127 @@ func base32decode(_ string: String, _ table: [UInt8]) -> [UInt8]? {
             value6 = table[Int(encoded[6])]
             value5 = table[Int(encoded[5])]
             decoded[4] = value6 << 5 | value7
+             print("result \(result)")
             fallthrough
         case 5:
             value4 = table[Int(encoded[4])]
             decoded[3] = value4 << 7 | value5 << 2 | value6 >> 3
+             print("result \(result)")
             fallthrough
         case 4:
             value3 = table[Int(encoded[3])]
             value2 = table[Int(encoded[2])]
             decoded[2] = value3 << 4 | value4 >> 1
+             print("result \(result)")
             fallthrough
         case 2:
             value1 = table[Int(encoded[1])]
             value0 = table[Int(encoded[0])]
             decoded[1] = value1 << 6 | value2 << 1 | value3 >> 4
             decoded[0] = value0 << 3 | value1 >> 2
+             print("result \(result)")
         default: break
         }
-        
+        print("result \(result)")
+        print("last block \( (value0, value1, value2, value3, value4, value5, value6, value7))")
+        print("result \(result)")
         return result
     }
+}
+
+func base32Dec(data: String, alphabet: Array<Int>, characters: Array<String>) -> Data? {
+    var processingData = ""
+
+    for char in data.uppercased().characters {
+        let str = String(char)
+
+        if characters.contains(str) {
+            processingData += str
+        } else if !characters.contains(str) && str != "=" {
+            return nil
+        }
+    }
+
+    if let base32Data = processingData.data(using: String.Encoding.ascii, allowLossyConversion: false) {
+        // how much space do we need
+        let fullGroups = base32Data.count / 8
+        var bytesInPartialGroup: Int = 0
+        switch base32Data.count % 8 {
+        case 0:
+            bytesInPartialGroup = 0
+        case 2:
+            bytesInPartialGroup = 1
+        case 4:
+            bytesInPartialGroup = 2
+        case 5:
+            bytesInPartialGroup = 3
+        case 7:
+            bytesInPartialGroup = 4
+        default:
+            return nil
+        }
+        let totalNumberOfBytes = fullGroups * 5 + bytesInPartialGroup
+
+        // allocate a buffer big enough for our decode
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: totalNumberOfBytes)
+
+        var base32Bytes = [UInt8](repeating: 0, count: base32Data.count)
+        base32Data.copyBytes(to: &base32Bytes, count: base32Bytes.count)
+
+        var decodedByteIndex = 0;
+        for byteIndex in stride(from: 0, to: base32Data.count, by: 8) {
+            let maxOffset = (byteIndex + 8 >= base32Data.count) ? base32Data.count : byteIndex + 8
+            let numberOfBytes = maxOffset - byteIndex
+
+            var encodedByte0: UInt8 = 0
+            var encodedByte1: UInt8 = 0
+            var encodedByte2: UInt8 = 0
+            var encodedByte3: UInt8 = 0
+            var encodedByte4: UInt8 = 0
+            var encodedByte5: UInt8 = 0
+            var encodedByte6: UInt8 = 0
+            var encodedByte7: UInt8 = 0
+
+            switch numberOfBytes {
+            case 8:
+                encodedByte7 = UInt8(alphabet[Int( base32Bytes[byteIndex + 7] )])
+                fallthrough
+            case 7:
+                encodedByte6 = UInt8(alphabet[Int( base32Bytes[byteIndex + 6] )])
+                fallthrough
+            case 6:
+                encodedByte5 = UInt8(alphabet[Int( base32Bytes[byteIndex + 5] )])
+                fallthrough
+            case 5:
+                encodedByte4 = UInt8(alphabet[Int( base32Bytes[byteIndex + 4] )])
+                fallthrough
+            case 4:
+                encodedByte3 = UInt8(alphabet[Int( base32Bytes[byteIndex + 3] )])
+                fallthrough
+            case 3:
+                encodedByte2 = UInt8(alphabet[Int( base32Bytes[byteIndex + 2] )])
+                fallthrough
+            case 2:
+                encodedByte1 = UInt8(alphabet[Int( base32Bytes[byteIndex + 1] )])
+                fallthrough
+            case 1:
+                encodedByte0 = UInt8(alphabet[Int( base32Bytes[byteIndex + 0] )])
+                fallthrough
+            default:
+                break;
+            }
+
+            buffer[decodedByteIndex + 0] = ((encodedByte0 << 3) & 0xF8) | ((encodedByte1 >> 2) & 0x07)
+            buffer[decodedByteIndex + 1] = ((encodedByte1 << 6) & 0xC0) | ((encodedByte2 << 1) & 0x3E) | ((encodedByte3 >> 4) & 0x01)
+            buffer[decodedByteIndex + 2] = ((encodedByte3 << 4) & 0xF0) | ((encodedByte4 >> 1) & 0x0F)
+            buffer[decodedByteIndex + 3] = ((encodedByte4 << 7) & 0x80) | ((encodedByte5 << 2) & 0x7C) | ((encodedByte6 >> 3) & 0x03)
+            buffer[decodedByteIndex + 4] = ((encodedByte6 << 5) & 0xE0) | (encodedByte7 & 0x1F)
+
+            decodedByteIndex += 5
+        }
+
+        return Data(bytesNoCopy: buffer, count: totalNumberOfBytes, deallocator: .free)
+    }
+    return nil
 }
 

@@ -49,8 +49,6 @@
 		9AC102731E9396E9009C3361 /* Navajo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC102581E93949C009C3361 /* Navajo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AC102751E9396E9009C3361 /* HandySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC102561E93949A009C3361 /* HandySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AC102771E9396E9009C3361 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC102541E939497009C3361 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9AC1027B1E9396E9009C3361 /* Security.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC1023C1E938D76009C3361 /* Security.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9AC1027D1E9396E9009C3361 /* Accelerate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC1023A1E938D6D009C3361 /* Accelerate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AC1027F1E93970C009C3361 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC102601E9394A5009C3361 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AC102811E93970E009C3361 /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC102641E9394B4009C3361 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AC102851E93974A009C3361 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC102821E939744009C3361 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -87,11 +85,9 @@
 				9AC102751E9396E9009C3361 /* HandySwift.framework in Embed Frameworks */,
 				9AC102731E9396E9009C3361 /* Navajo.framework in Embed Frameworks */,
 				9AC102811E93970E009C3361 /* KeychainSwift.framework in Embed Frameworks */,
-				9AC1027D1E9396E9009C3361 /* Accelerate.framework in Embed Frameworks */,
 				9AC102711E9396E9009C3361 /* OneTimePassword.framework in Embed Frameworks */,
 				9AC1026F1E9396E9009C3361 /* PopupDialog.framework in Embed Frameworks */,
 				9AC102691E9396E0009C3361 /* RxTest.framework in Embed Frameworks */,
-				9AC1027B1E9396E9009C3361 /* Security.framework in Embed Frameworks */,
 				9AC1027F1E93970C009C3361 /* RxSwift.framework in Embed Frameworks */,
 				9AC1026B1E9396E3009C3361 /* SwCrypt.framework in Embed Frameworks */,
 				9AC102771E9396E9009C3361 /* CryptoSwift.framework in Embed Frameworks */,
@@ -395,6 +391,7 @@
 				9A900EA31DD9E472002CB765 /* Embed Frameworks */,
 				33A3265BEF950F53E52B71BF /* [CP] Embed Pods Frameworks */,
 				73778455D13C483DD46A3D00 /* [CP] Copy Pods Resources */,
+				9A33D9411F2A167400B657A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -438,7 +435,7 @@
 				TargetAttributes = {
 					9A09ADBD1DD34B5C00403378 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = DR9YEJ8YRD;
+						DevelopmentTeam = 7NS378FJJ2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -568,6 +565,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Connect/Pods-Connect-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9A33D9411F2A167400B657A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a85641c8edc06a949825175f4b5ff9c3dffb8167 cd54f9b784709943848ba79814ef4942dfd36f5d9433e156081f33431e0ca567";
 		};
 		E01F4B105FF1B77B0C18B00F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -791,7 +801,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Connect/Connect.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DR9YEJ8YRD;
+				DEVELOPMENT_TEAM = 7NS378FJJ2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -803,6 +813,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.canopus.Connect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Connect-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -816,7 +827,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Connect/Connect.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DR9YEJ8YRD;
+				DEVELOPMENT_TEAM = 7NS378FJJ2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -828,6 +839,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.canopus.Connect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Connect-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

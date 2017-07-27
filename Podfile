@@ -6,7 +6,8 @@ target 'Connect' do
   use_frameworks!
   
   pod 'OneTimePassword', '~> 3.0'
-
+  pod 'Fabric'
+  pod 'Crashlytics'
   target 'ConnectTests' do
     inherit! :search_paths
     # Pods for testing

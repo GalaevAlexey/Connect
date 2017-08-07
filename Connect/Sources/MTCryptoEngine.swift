@@ -125,6 +125,7 @@ struct CryptoEngine {
                 let equationResult = intTrim % 100000000
 
                 UserProfiles.currentUser.encryptedMAC.value = "\(equationResult)"
+
                 return true
             } else {
                 return false

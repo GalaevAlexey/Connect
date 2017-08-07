@@ -10,7 +10,7 @@ import Foundation
 
 extension Array {
     func randomItem() -> Element? {
-        let idx = Int(arc4random()) % count
+        let idx = Int(arc4random_uniform(UInt32(count)))
         return self[idx]
     }
     
@@ -27,7 +27,7 @@ extension Array {
     func shuffleItems() -> [Element] {
         var newArray = self
         for i in (0..<newArray.count) {
-            let j = Int(arc4random()) % newArray.count
+            let j = Int(arc4random_uniform(UInt32(newArray.count)))
             newArray.insert(newArray.remove(at: j), at: i)
         }
         return newArray
